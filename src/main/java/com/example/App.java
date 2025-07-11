@@ -1,15 +1,26 @@
 package com.example;
 
 import java.util.*;
+import java.util.logging.Logger;
 
-public class App {
+class App {
+    private static final Logger logger = Logger.getLogger(App.class.getName());
+
+    // Repeated literals defined as constants
+    private static final String APPLE = "apple";
+    private static final String BANANA = "banana";
+    private static final String ORANGE = "orange";
+    private static final String KIWI = "kiwi";
+    private static final String GRAPE = "grape";
+
     public static void main(String[] args) {
         App app = new App();
         app.run();
     }
 
-    public void run() {
-        System.out.println("Welcome to the long-running Java application for SonarQube analysis.");
+    void run() {
+        logger.info("Welcome to the long-running Java application for SonarQube analysis.");
+
         List<String> data = generateSampleData();
         Map<String, Integer> frequencies = calculateFrequencies(data);
         displayFrequencies(frequencies);
@@ -17,9 +28,11 @@ public class App {
 
     private List<String> generateSampleData() {
         List<String> words = Arrays.asList(
-            "apple", "banana", "apple", "orange", "banana", "apple", "kiwi", "banana", "kiwi", "grape", "grape"
+            APPLE, BANANA,
+            APPLE, ORANGE, BANANA,
+            APPLE, KIWI, BANANA, KIWI, GRAPE, GRAPE
         );
-        System.out.println("Generated sample data: " + words);
+        logger.info("Generated sample data: " + words);
         return words;
     }
 
@@ -32,36 +45,39 @@ public class App {
     }
 
     private void displayFrequencies(Map<String, Integer> frequencies) {
-        System.out.println("Word Frequencies:");
+        logger.info("Word Frequencies:");
         for (Map.Entry<String, Integer> entry : frequencies.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            logger.info(entry.getKey() + ": " + entry.getValue());
         }
     }
 
-    public int add(int a, int b) {
+    int add(int a, int b) {
         return a + b;
     }
 
-    public int factorial(int n) {
+    int factorial(int n) {
         if (n <= 1) return 1;
         return n * factorial(n - 1);
     }
 
-    public boolean isPalindrome(String str) {
+    boolean isPalindrome(String str) {
         if (str == null) return false;
         String reversed = new StringBuilder(str).reverse().toString();
         return str.equals(reversed);
     }
 
-    public void printFibonacci(int count) {
-        int a = 0, b = 1;
-        System.out.print("Fibonacci Series: ");
+    void printFibonacci(int count) {
+        int a = 0;
+        int b = 1;
+
+        StringBuilder sb = new StringBuilder("Fibonacci Series: ");
         for (int i = 0; i < count; i++) {
-            System.out.print(a + " ");
+            sb.append(a).append(" ");
             int next = a + b;
             a = b;
             b = next;
         }
-        System.out.println();
+
+        logger.info(sb.toString());
     }
 }

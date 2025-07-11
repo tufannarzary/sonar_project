@@ -3,9 +3,10 @@ package com.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AppTest {
+class AppTest { // public modifier removed
+
     @Test
-    public void testAdd() {
+    void testAdd() { // public modifier removed
         App app = new App();
         assertEquals(5, app.add(2, 3));
     }
